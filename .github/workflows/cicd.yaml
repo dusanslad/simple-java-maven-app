@@ -20,6 +20,7 @@ jobs:
         with:
           java-version: '17'  # Specify your Java version
           distribution: 'temurin'
+          maven-version: '3.9.2'  # Specify the required Maven version
 
       - name: Build with Maven
         run: mvn clean install  
