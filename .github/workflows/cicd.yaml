@@ -33,7 +33,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: my-artifact
-          path: build/libs/*.jar        
+          path: target/*.jar        
 
       - name: Test Maven
         run: mvn test  
