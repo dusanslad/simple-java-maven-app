@@ -61,7 +61,7 @@ jobs:
           
       - name: Copy files to EC2
         run: |
-          scp -i ~/.ssh/id_rsa -r *.jar ubuntu@${{ secrets.EC2_HOST }}:~/*.jar
+          scp -i ~/.ssh/id_rsa -r target/*.jar ubuntu@${{ secrets.EC2_HOST }}:~/*.jar
           
       - name: Cleanup SSH key
         if: always()
