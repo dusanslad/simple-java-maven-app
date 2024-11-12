@@ -49,9 +49,6 @@ jobs:
           name: my-artifact
           path: ./target
 
-      - name: List files
-        run: pwd && ls -la & ls -la target
-
       - name: Setup SSH key
         run: |
           mkdir -p ~/.ssh
@@ -61,7 +58,7 @@ jobs:
           
       - name: Copy files to EC2
         run: |
-          scp -i ~/.ssh/id_rsa -r target/*.jar ubuntu@${{ secrets.EC2_HOST }}:~/*.jar
+          scp -i ~/.ssh/id_rsa -r target/*.jar ubuntu@${{ secrets.EC2_HOST }}:~/app.jar
           
       - name: Cleanup SSH key
         if: always()
