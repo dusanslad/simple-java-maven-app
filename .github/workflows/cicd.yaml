@@ -49,7 +49,7 @@ jobs:
           path: ./target
 
       - name: List files
-        run: ls -la
+        run: pwd && ls -la & ls -la target
 
       - name: Setup SSH key
         run: |
