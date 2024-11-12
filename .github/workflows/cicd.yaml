@@ -30,10 +30,36 @@ jobs:
         run: mvn clean install  
 
       - name: Publish Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: my-artifact
           path: target/*.jar        
 
       - name: Test Maven
         run: mvn test  
+
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-artifact
+          path: target/*.jar  
+
+      - name: Setup SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIV_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
+          
+      - name: Copy files to EC2
+        run: |
+          scp -i ~/.ssh/id_rsa -r *.jar ubuntu@${{ secrets.EC2_HOST }}:~/*.jar
+          
+      - name: Cleanup SSH key
+        if: always()
+        run: rm -f ~/.ssh/id_rsa
+    
