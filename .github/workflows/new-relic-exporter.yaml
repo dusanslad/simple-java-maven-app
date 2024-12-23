@@ -24,4 +24,4 @@ jobs:
       - name: new-relic-exporter
         uses: newrelic-experimental/gha-new-relic-exporter@latest
       - name: CHeck if zip file exists
-        run: ls -la /usr/local/lib/python3.10/
+        run: ls -la /usr/local/lib/python3.10/ && ls -la /usr/local/lib/python3.10/dist-packages/
