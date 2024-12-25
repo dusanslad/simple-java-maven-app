@@ -1,4 +1,4 @@
-name: build and deploy cicd
+name: build and deploy cicd # adding comment
 
 on:
   push:
