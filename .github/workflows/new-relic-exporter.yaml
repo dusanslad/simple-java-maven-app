@@ -1,9 +1,6 @@
 name: new-relic-exporter
 
 on:
-  push:
-    branches:
-      - master
   workflow_run:
     workflows: ['*']
     types: [completed] # defaults to run on every completed workflow run event
@@ -15,7 +12,6 @@ env:
   GHA_RUN_NAME: ${{ github.event.workflow_run.name }}
   #GHA_CUSTOM_ATTS: '{"mycustomattributea":"test", "mycustomattributeb":10, "mycustomattributec":"My custom attribute"}'
 
-
 jobs:
   new-relic-exporter:
     name: new-relic-exporter
@@ -26,5 +22,3 @@ jobs:
         uses: actions/checkout@v3
       - name: new-relic-exporter
         uses: newrelic-experimental/gha-new-relic-exporter@latest
-      - name: CHeck if zip file exists
-        run: ls -la /usr/local/lib/python3.10/ && ls -la /usr/local/lib/python3.10/dist-packages/ && ls -la /usr/lib/python3.10/ 
