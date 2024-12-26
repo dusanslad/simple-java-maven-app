@@ -15,7 +15,7 @@ env:
 jobs:
   new-relic-exporter:
     name: new-relic-exporter
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     if: ${{ always() }}
     steps:
       - name: Checkout
