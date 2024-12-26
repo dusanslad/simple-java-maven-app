@@ -2,7 +2,7 @@ name: build and deploy cicd # adding comment
 
 on:
   push:
-    branches: [ "cicd" ]
+    branches: [ "master" ]
   workflow_dispatch:
 
 jobs:
